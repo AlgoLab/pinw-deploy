@@ -15,7 +15,7 @@ docker network ls | grep pinwnet || docker network create --subnet=172.18.10.0/2
 echo "done"
 
 echo "Halting and removing old pinw container"
-docker ps | grep pinw && docker stop pinw && docker rm -f pinw
+docker ps -a | grep pinw && docker stop pinw && docker rm -f pinw
 
 echo "Starting container pinw.${v} as $PINW_NAME"
 docker run -d  -v ~/pinw-data:/home/app/data --name "pinw" --net pinwnet --ip 172.18.10.10  -e APP_UID=$(id -u) -e APP_GID=$(id -g)  algolab/pinw:${v}
