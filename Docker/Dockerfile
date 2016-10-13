@@ -7,6 +7,9 @@ CMD ["/sbin/my_init"]
 
 # Enable nginx + passenger
 RUN rm -f /etc/service/nginx/down
+RUN apt-get update
+RUN apt-get install sqlite3
+RUN apt-get upgrade
 
 # Get PInW
 USER app
@@ -37,5 +40,4 @@ COPY init-ssh.sh /etc/my_init.d/init-ssh.sh
 EXPOSE 80
 
 COPY inituidgid.sh /usr/local/sbin
-RUN  chmod u+x /usr/local/sbin/inituidgid.sh
 
