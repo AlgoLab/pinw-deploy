@@ -1,6 +1,10 @@
 #!/bin/bash
 
-cd /home/app
+cd /home/app/pinw
+
+# Use last as a file stating when pinw has been restart for the last time
+# If there is a newer commit on master, restart the app
+LAST=/tmp/last-restart-pinw
+test -f "${LAST}" || touch  "${LAST}"
 git pull --all
-apt-get update
-apt-get upgrade -y -o Dpkg::Options::="--force-confold"
+test .git/ref/heads/master nt "${LAST}" && passenger-config restart-app /home/app/pinw && touch "${LAST}"

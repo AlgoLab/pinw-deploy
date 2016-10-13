@@ -10,7 +10,6 @@ MAILTO=none
 
 
 # Update all packages
-00 */2  * * *   root     dpkg --configure -a && apt-get -qq -f install && apt-get -qq update && apt-get -y -qq -o Dpkg::Options::="--force-confold" && apt-get -qq clean
+00 */2  * * *   root  dpkg --configure -a && apt-get -qq -f install && apt-get -qq update && apt-get -y -qq -o Dpkg::Options::="--force-confold" && apt-get -qq clean
 # Update pinw
-35 *  * * *   app  cd /home/app/pinw && git pull --all
-42 *  * * *   root find /home/app/pinw/.git/refs/heads/master -cmin -30 && passenger-config restart-app /home/app/pinw
+*/5 *  * * *   app  /usr/local/bin/update-pinw.sh
