@@ -8,8 +8,8 @@ CMD ["/sbin/my_init"]
 # Enable nginx + passenger
 RUN rm -f /etc/service/nginx/down
 RUN apt-get update
-RUN apt-get -y --force-yes install sqlite3
-RUN apt-get -y --force-yes upgrade
+RUN apt-get -y install sqlite3
+RUN apt-get -y upgrade
 
 # Get PInW
 USER app
