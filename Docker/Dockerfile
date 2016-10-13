@@ -28,7 +28,6 @@ COPY crontab /etc/crontab
 COPY update-pinw.sh /usr/local/bin/update_pinw.sh
 # Pinw cron jobs:
 USER app
-RUN whenever -w
 
 # Add configuration to nginx:
 USER root
