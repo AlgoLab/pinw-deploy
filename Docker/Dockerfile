@@ -15,7 +15,7 @@ RUN apt-get -y upgrade
 USER app
 WORKDIR /home/app
 RUN git clone https://github.com/AlgoLab/pinw
-RUN mkdir data
+RUN mkdir /home/data
 WORKDIR /home/app/pinw
 ENV RACK_ENV production
 

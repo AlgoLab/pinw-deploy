@@ -37,5 +37,6 @@ if [[ $# -gt 0 ]]; then
     exec "$@"
 fi
 
+ln -s /home/data /home/app/data
 test -s /home/app/data/db/pinw.db || sudo -u app RACK_ENV=production rake db:setup
 exit 0
