@@ -27,3 +27,4 @@ groupmod -g "$APP_GID" app
 usermod -u "$APP_UID" -g "$APP_GID" app
 
 test -s /home/app/data/db/pinw.db || sudo -u app RACK_ENV=production rake db:setup
+exit 0
