@@ -35,7 +35,7 @@ RUN rm /etc/nginx/sites-enabled/default
 COPY nginx-pinw.conf /etc/nginx/sites-enabled/pinw.conf
 
 COPY init-ssh.sh /etc/my_init.d/init-ssh.sh
-COPY inituidgid.sh /etc/my_init.d/
+COPY inituidgid.sh /usr/local/sbin
 
 EXPOSE 80
 
