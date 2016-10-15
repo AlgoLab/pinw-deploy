@@ -23,5 +23,4 @@ docker run -d  -v ~/pinw-data:/home/data --name "pinw" --net pinwnet --ip 172.18
 # Terrible hack, until I fix the docker data volume stuff
 echo "Fix UID, GID"
 docker exec pinw /usr/local/sbin/inituidgid.sh
-sv restart nginx
 echo "done"
