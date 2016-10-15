@@ -20,7 +20,7 @@ WORKDIR /home/app/pinw
 ENV RACK_ENV production
 
 USER root
-RUN bundle install
+RUN setuser app bundle install
 
 # New crontab:
 USER root
@@ -35,7 +35,6 @@ RUN rm /etc/nginx/sites-enabled/default
 COPY nginx-pinw.conf /etc/nginx/sites-enabled/pinw.conf
 
 COPY init-ssh.sh /etc/my_init.d/init-ssh.sh
-COPY inituidgid.sh /usr/local/sbin
 
 EXPOSE 80
 
