@@ -38,6 +38,6 @@ if [[ $# -gt 0 ]]; then
 fi
 
 ln -s /home/data /home/app/
-sv restart nginx
+sleep 5s && sv restart nginx
 test -s /home/app/data/db/pinw.db || su -c "RACK_ENV=production rake db:setup" app
 exit 0
