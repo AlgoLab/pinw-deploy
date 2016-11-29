@@ -24,7 +24,7 @@ RUN setuser app bundle install
 
 USER app
 WORKDIR /home/app/pinw
-rake db:setup
+RUN rake db:setup
 
 # New crontab:
 USER root
