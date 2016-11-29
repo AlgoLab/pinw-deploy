@@ -18,10 +18,13 @@ RUN git clone https://github.com/AlgoLab/pinw
 RUN mkdir /home/app/data
 WORKDIR /home/app/pinw
 ENV RACK_ENV production
-RACK_ENV=production rake db:setup
 
 USER root
 RUN setuser app bundle install
+
+USER app
+WORKDIR /home/app/pinw
+rake db:setup
 
 # New crontab:
 USER root
