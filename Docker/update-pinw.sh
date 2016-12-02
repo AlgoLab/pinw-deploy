@@ -8,3 +8,4 @@ LAST=/tmp/last-restart-pinw
 test -f "${LAST}" || touch  "${LAST}"
 git pull --all
 test .git/ref/heads/master -nt "${LAST}" && passenger-config restart-app /home/app/pinw && touch "${LAST}"
+bundle install
