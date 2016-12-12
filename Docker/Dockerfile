@@ -39,7 +39,7 @@ RUN rm /etc/nginx/sites-enabled/default
 COPY nginx-pinw.conf /etc/nginx/sites-enabled/pinw.conf
 
 COPY init-ssh.sh /etc/my_init.d/init-ssh.sh
-
+RUN whenever -w
 EXPOSE 80
 
 
