@@ -27,13 +27,14 @@ RUN setuser app bundle install
 USER app
 WORKDIR /home/app/pinw
 RUN rake db:setup
+# Pinw cron jobs:
+USER app
+RUN whenever -w
 
 # New crontab:
 USER root
 COPY crontab /etc/crontab
 COPY update-pinw.sh /usr/local/bin/update_pinw.sh
-# Pinw cron jobs:
-USER app
 
 # Add configuration to nginx:
 USER root
@@ -41,7 +42,6 @@ RUN rm /etc/nginx/sites-enabled/default
 COPY nginx-pinw.conf /etc/nginx/sites-enabled/pinw.conf
 
 COPY init-ssh.sh /etc/my_init.d/init-ssh.sh
-RUN whenever -w
 EXPOSE 80
 
 
