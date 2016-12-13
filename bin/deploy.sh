@@ -24,6 +24,8 @@ echo "Halting and removing old pinw container"
 docker ps -a | grep pinw && docker stop pinw && docker rm -f pinw
 
 echo "Starting container pinw.${v} as $PINW_NAME"
+v=$(date +%FH%H%M)
+docker build --build-arg CACHEBUST="${v}" -t "algolab/pinw:${v}" .
 docker run -d --name "pinw" --net pinwnet --ip 172.18.10.10  "algolab/pinw:${v}"
 
 # To restore from backup

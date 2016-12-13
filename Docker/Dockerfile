@@ -14,6 +14,8 @@ RUN apt-get -y upgrade
 # Get PInW
 USER app
 WORKDIR /home/app
+
+ARG CACHEBUST=1
 RUN git clone https://github.com/AlgoLab/pinw
 RUN mkdir /home/app/data
 WORKDIR /home/app/pinw
