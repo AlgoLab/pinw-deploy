@@ -7,6 +7,7 @@ CMD ["/sbin/my_init"]
 
 # Enable nginx + passenger
 RUN rm -f /etc/service/nginx/down
+ARG CACHEBUST=1
 RUN apt-get update
 RUN apt-get -y install sqlite3 python
 RUN apt-get -y upgrade
@@ -15,7 +16,6 @@ RUN apt-get -y upgrade
 USER app
 WORKDIR /home/app
 
-ARG CACHEBUST=1
 RUN git clone https://github.com/AlgoLab/pinw
 RUN mkdir /home/app/data
 WORKDIR /home/app/pinw
