@@ -28,7 +28,7 @@ USER app
 WORKDIR /home/app/pinw
 RUN rake db:setup
 # Pinw cron jobs:
-
+RUN whenever -w
 # New crontab:
 USER root
 COPY crontab /etc/crontab
