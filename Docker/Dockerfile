@@ -15,6 +15,7 @@ RUN apt-get -y upgrade
 # Get PInW
 USER app
 WORKDIR /home/app
+RUN echo "source /etc/profile" >> ~/.bashrc
 
 RUN git clone https://github.com/AlgoLab/pinw
 RUN mkdir /home/app/data
