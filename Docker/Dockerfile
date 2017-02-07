@@ -27,8 +27,7 @@ RUN setuser app bundle install
 USER app
 WORKDIR /home/app/pinw
 RUN rake db:setup
-# Pinw cron jobs:
-RUN whenever -w
+COPY pinw.db /home/app/data/db/pinw.db
 # New crontab:
 USER root
 COPY crontab /etc/crontab

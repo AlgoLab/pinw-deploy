@@ -3,13 +3,19 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 MAILTO=none
 
 # m h dom mon dow user  command
-17 *    * * *   root    cd / && run-parts --report /etc/cron.hourly
+17 *   * * *   root    cd / && run-parts --report /etc/cron.hourly
 35 1   * * *   root    cd / && run-parts --report /etc/cron.daily
 27 4   * * 7   root    cd / && run-parts --report /etc/cron.weekly
 52 5   1 * *   root    cd / && run-parts --report /etc/cron.monthly
 
 
 # Update all packages
-00 */2  * * *   root  dpkg --configure -a && apt-get -qq -f install && apt-get -qq update && apt-get -y -qq -o Dpkg::Options::="--force-confold" && apt-get -qq clean
+00 */2     * * * root  dpkg --configure -a && apt-get -qq -f install
+00 1-59/2  * * * root  apt-get -qq update && apt-get -y -qq -o Dpkg::Options::="--force-confold" && apt-get -qq clean
 # Update pinw
 */5 *  * * *   app  /usr/local/bin/update_pinw.sh
+
+# Job queue
+00 */2     * * * app ruby /home/app/pinw/cron/pinw-fetch.rb --production >> /home/app/data/pinw.log 2>&1'
+00 1-59/2  * * * app sleep 25s && ruby /home/app/pinw/cron/pinw-dispatch.rb --production >> /home/app/data/pinw.log 2>&1'
+
